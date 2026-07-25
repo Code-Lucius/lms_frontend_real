@@ -1,0 +1,55 @@
+{
+  "pages": {
+    "/archdiocese/materials/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese/materials/page.js"
+    ],
+    "/archdiocese/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese/layout.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/[parish]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[parish]/page.js"
+    ],
+    "/archdiocese/exercises/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese/exercises/page.js"
+    ],
+    "/[parish]/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[parish]/login/page.js"
+    ],
+    "/archdiocese-admin/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese-admin/login/page.js"
+    ],
+    "/archdiocese/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese/page.js"
+    ],
+    "/archdiocese/exams/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese/exams/page.js"
+    ],
+    "/archdiocese/content/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archdiocese/content/page.js"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "/archdiocese-admin/login/page": "app/archdiocese-admin/login/page.js",
+  "/[parish]/page": "app/[parish]/page.js",
+  "/archdiocese/materials/page": "app/archdiocese/materials/page.js",
+  "/archdiocese/exercises/page": "app/archdiocese/exercises/page.js",
+  "/archdiocese/page": "app/archdiocese/page.js",
+  "/archdiocese/exams/page": "app/archdiocese/exams/page.js",
+  "/archdiocese/content/page": "app/archdiocese/content/page.js"
+}
