@@ -23,6 +23,18 @@ export interface Parish {
   slug: string;
 }
 
+export interface Parishioner {
+  uuid?: string;
+  first_name: string;
+  last_name: string;
+  middle_name: string | null;
+  email: string;
+  phone: string;
+  parish_code: string;
+  deactivated?: "yes" | "no"; 
+  created_at: string;
+}
+
 export interface Course {
   uuid: string;
   name: string;
@@ -52,6 +64,12 @@ export interface Exercise {
   description: string | null;
   instructions: string | null;
   due_date: string | null;
+}
+
+export interface Question {
+  uuid: string;
+  question_text: string;
+  marks: number | null;
 }
 
 export interface RegionAdminRecord {

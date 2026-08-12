@@ -1,9 +1,11 @@
 {
-  "/archdiocese-admin/login/page": "app/archdiocese-admin/login/page.js",
-  "/[parish]/page": "app/[parish]/page.js",
-  "/archdiocese/materials/page": "app/archdiocese/materials/page.js",
-  "/archdiocese/exercises/page": "app/archdiocese/exercises/page.js",
-  "/archdiocese/page": "app/archdiocese/page.js",
-  "/archdiocese/exams/page": "app/archdiocese/exams/page.js",
-  "/archdiocese/content/page": "app/archdiocese/content/page.js"
+  "/[parish]/login/page": "app/[parish]/login/page.js",
+  "/[parish]/admin/login/page": "app/[parish]/admin/login/page.js",
+  "/deanery-admin/login/page": "app/deanery-admin/login/page.js",
+  "/api/parishioners/route": "app/api/parishioners/route.js",
+  "/[parish]/(dashboard)/page": "app/[parish]/(dashboard)/page.js",
+  "/[parish]/admin/(dashboard)/page": "app/[parish]/admin/(dashboard)/page.js",
+  "/[parish]/admin/(dashboard)/results/page": "app/[parish]/admin/(dashboard)/results/page.js",
+  "/[parish]/admin/(dashboard)/admins/page": "app/[parish]/admin/(dashboard)/admins/page.js",
+  "/[parish]/admin/(dashboard)/subscription/page": "app/[parish]/admin/(dashboard)/subscription/page.js"
 }

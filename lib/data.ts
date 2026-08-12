@@ -27,7 +27,7 @@ export const courses: Course[] = [
   },
 ];
 
-export type Material = { ty: "video" | "pdf" | "text"; n: string; len: string };
+export type Material = { ty: "video" | "pdf" | "text" | "exercise"; n: string; len: string };
 export type Topic = { t: string; mats: Material[] };
 export const courseContent: { topics: Topic[] }[] = [
   {
@@ -36,14 +36,17 @@ export const courseContent: { topics: Topic[] }[] = [
         { ty: "video", n: "Introduction to the Apostles' Creed", len: "12 min" },
         { ty: "pdf", n: "The Creed — study notes", len: "6 pages" },
         { ty: "text", n: "Reflection: what we profess", len: "4 min read" },
+        { ty: "exercise", n: "Exercise: exercise on the topic", len: "4 min read" }
       ] },
       { t: "Topic 2 · The Sacraments", mats: [
         { ty: "video", n: "The seven sacraments explained", len: "18 min" },
         { ty: "pdf", n: "Sacraments at a glance", len: "2 pages" },
+        { ty: "exercise", n: "Exercise: exercise on the topic", len: "4 min read" }
       ] },
       { t: "Topic 3 · Life in Christ", mats: [
         { ty: "text", n: "The Beatitudes", len: "5 min read" },
         { ty: "pdf", n: "The Ten Commandments", len: "3 pages" },
+        { ty: "exercise", n: "Exercise: exercise on the topic", len: "4 min read" }
       ] },
     ],
   },

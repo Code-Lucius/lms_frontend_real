@@ -1,5 +1,5 @@
 import type { NavSection } from "@/components/AppShell";
-import { IconGrid, IconTree, IconCard, IconUsers, IconFolder, IconCalendar, IconUserPlus } from "@/components/icons";
+import { IconGrid, IconTree, IconCard, IconUsers, IconFolder, IconCalendar, IconUserPlus, IconBars, IconCheckSquare, IconDoc } from "@/components/icons";
 
 export const NAV: NavSection[] = [
   {
@@ -44,41 +44,13 @@ export const NAV: NavSection[] = [
       {
         href: "/archdiocese/courses", // group toggle key only - never itself a page
         label: "Courses",
-        icon: <IconFolder />,
+        icon: <IconTree />,
         children: [
           { href: "/archdiocese/courses", label: "Courses", icon: <IconGrid /> },
-        ],
-      },
-      {
-        href: "/archdiocese/modules",
-        label: "Modules",
-        icon: <IconFolder />,
-        children: [
-          { href: "/archdiocese/modules", label: "Modules", icon: <IconGrid /> },
-        ],
-      },
-      {
-        href: "/archdiocese/topics",
-        label: "Topics",
-        icon: <IconFolder />,
-        children: [
-          { href: "/archdiocese/topics", label: "Topics", icon: <IconGrid /> },
-        ],
-      },
-      {
-        href: "/archdiocese/materials",
-        label: "Materials",
-        icon: <IconFolder />,
-        children: [
-          { href: "/archdiocese/materials", label: "Materials", icon: <IconGrid /> },
-        ],
-      },
-      {
-        href: "/archdiocese/exercises",
-        label: "Exercises",
-        icon: <IconFolder />,
-        children: [
-          { href: "/archdiocese/exercises", label: "Exercises", icon: <IconGrid /> },
+          { href: "/archdiocese/modules", label: "Modules", icon: <IconBars /> },
+          { href: "/archdiocese/topics", label: "Topics", icon: <IconDoc /> },
+          { href: "/archdiocese/materials", label: "Materials", icon: <IconFolder /> },
+          { href: "/archdiocese/exercises", label: "Exercises", icon: <IconCheckSquare /> },
         ],
       },
     ],

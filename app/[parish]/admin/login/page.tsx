@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { parish: string } }) {
       title={`${parishName} \u2014 Admin`}
       subtitle="Archdiocese Learning Management System"
       slugLabel={`${parish} / admin`}
-      endpoint={`/${parish}/admin/login`}
+      endpoint={`/${parish}/parish-admin/login`}
       role="parish-admin"
       parishSlug={parish}
     />

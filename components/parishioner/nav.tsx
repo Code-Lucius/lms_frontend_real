@@ -10,7 +10,15 @@ export function getNav(parish: string): NavSection[] {
     {
       label: "Learning",
       items: [
-        { href: `/${parish}`, label: "My courses", icon: <IconGrid /> },
+        { 
+          href: `/${parish}`, 
+          label: "My courses", 
+          icon: <IconGrid />,
+          children: [
+            { href: `/${parish}/courses`, label: "All Courses", icon: <IconGrid /> },
+            { href: `/${parish}`, label: "My Courses", icon: <IconGrid /> },
+          ],
+        },
         { href: `/${parish}/exercise`, label: "Exercises", icon: <IconDoc /> },
         { href: `/${parish}/exam`, label: "Exam centre", icon: <IconClock /> },
         { href: `/${parish}/results`, label: "My results", icon: <IconBars /> },
