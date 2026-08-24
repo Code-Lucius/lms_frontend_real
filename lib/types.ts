@@ -17,6 +17,13 @@ export interface ArchdioceseAdminRecord {
   type: "super" | "finance" | "academic";
 }
 
+export interface Term {
+  name: string;
+  status: "active" | "ended";
+  started_at: string;
+  ended_at: string | null;
+}
+
 export interface Parish {
   uuid: string;
   parish_name: string;
@@ -70,6 +77,45 @@ export interface Question {
   uuid: string;
   question_text: string;
   marks: number | null;
+}
+
+export interface ExamListItem {
+  uuid: string;
+  title: string;
+  pass_mark: number;
+  allow_multiple_attempts: boolean;
+  opens_at: string | null;
+  closes_at: string | null;
+  module: {
+    uuid: string;
+    name: string;
+    course: { name: string };
+  };
+}
+
+export interface ExamOption {
+  uuid: string;
+  option_text: string;
+  is_correct: boolean;
+}
+
+export interface ExamQuestionRecord {
+  uuid: string;
+  question_text: string;
+  marks: number;
+  order: number;
+  options: ExamOption[];
+}
+
+export interface ExamRecord {
+  uuid: string;
+  title: string;
+  instructions: string | null;
+  pass_mark: number;
+  allow_multiple_attempts: boolean;
+  opens_at: string | null;
+  closes_at: string | null;
+  questions_count?: number;
 }
 
 export interface RegionAdminRecord {

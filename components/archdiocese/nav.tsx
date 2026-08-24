@@ -6,6 +6,7 @@ export const NAV: NavSection[] = [
     label: "Oversight",
     items: [
       { href: "/archdiocese", label: "Dashboard", icon: <IconGrid /> },
+      { href: "/archdiocese/term", label: "Academic term", icon: <IconCalendar /> },
       { href: "/archdiocese/hierarchy", label: "Hierarchy", icon: <IconTree /> },
       { href: "/archdiocese/subscriptions", label: "Subscriptions", icon: <IconCard /> },
       { href: "/archdiocese/directory", label: "Student directory", icon: <IconUsers /> },
@@ -51,6 +52,8 @@ export const NAV: NavSection[] = [
           { href: "/archdiocese/topics", label: "Topics", icon: <IconDoc /> },
           { href: "/archdiocese/materials", label: "Materials", icon: <IconFolder /> },
           { href: "/archdiocese/exercises", label: "Exercises", icon: <IconCheckSquare /> },
+          { href: "/archdiocese/questions", label: "Exercise Questions", icon: <IconCheckSquare /> },
+          { href: "/archdiocese/exam", label: "Examination", icon: <IconGrid /> },
         ],
       },
     ],

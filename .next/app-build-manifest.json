@@ -1,14 +1,9 @@
 {
   "pages": {
-    "/region-admin/(dashboard)/page": [
+    "/[parish]/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/region-admin/(dashboard)/page.js"
-    ],
-    "/region-admin/(dashboard)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/region-admin/(dashboard)/layout.js"
+      "static/chunks/app/[parish]/login/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -26,15 +21,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/[parish]/(dashboard)/layout.js"
     ],
-    "/[parish]/login/page": [
+    "/[parish]/(dashboard)/exam/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/login/page.js"
+      "static/chunks/app/[parish]/(dashboard)/exam/page.js"
     ],
-    "/region-admin/login/page": [
+    "/[parish]/(dashboard)/exam/run/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/region-admin/login/page.js"
+      "static/chunks/app/[parish]/(dashboard)/exam/run/page.js"
+    ],
+    "/[parish]/(dashboard)/courses/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/[parish]/(dashboard)/courses/page.js"
     ],
     "/archdiocese-admin/login/page": [
       "static/chunks/webpack.js",
@@ -51,125 +51,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/archdiocese/layout.js"
     ],
-    "/archdiocese/courses/page": [
+    "/archdiocese/exam/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/courses/page.js"
+      "static/chunks/app/archdiocese/exam/page.js"
     ],
-    "/archdiocese/modules/page": [
+    "/[parish]/(dashboard)/results/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/modules/page.js"
-    ],
-    "/archdiocese/hierarchy/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/hierarchy/page.js"
-    ],
-    "/archdiocese/subscriptions/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/subscriptions/page.js"
-    ],
-    "/archdiocese/directory/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/directory/page.js"
-    ],
-    "/archdiocese/content/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/content/page.js"
-    ],
-    "/archdiocese/exams/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/exams/page.js"
-    ],
-    "/archdiocese/admins/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/archdiocese/admins/page.js"
-    ],
-    "/region-admin/(dashboard)/analytics/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/region-admin/(dashboard)/analytics/page.js"
-    ],
-    "/region-admin/(dashboard)/hierarchy/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/region-admin/(dashboard)/hierarchy/page.js"
-    ],
-    "/region-admin/(dashboard)/directory/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/region-admin/(dashboard)/directory/page.js"
-    ],
-    "/deanery-admin/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/login/page.js"
-    ],
-    "/deanery-admin/(dashboard)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/(dashboard)/page.js"
-    ],
-    "/deanery-admin/(dashboard)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/(dashboard)/layout.js"
-    ],
-    "/deanery-admin/(dashboard)/results/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/(dashboard)/results/page.js"
-    ],
-    "/deanery-admin/(dashboard)/analytics/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/(dashboard)/analytics/page.js"
-    ],
-    "/deanery-admin/(dashboard)/hierarchy/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/(dashboard)/hierarchy/page.js"
-    ],
-    "/deanery-admin/(dashboard)/directory/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/deanery-admin/(dashboard)/directory/page.js"
-    ],
-    "/[parish]/admin/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/admin/login/page.js"
-    ],
-    "/[parish]/admin/(dashboard)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/admin/(dashboard)/page.js"
-    ],
-    "/[parish]/admin/(dashboard)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/admin/(dashboard)/layout.js"
-    ],
-    "/[parish]/admin/(dashboard)/results/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/admin/(dashboard)/results/page.js"
-    ],
-    "/[parish]/admin/(dashboard)/admins/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/admin/(dashboard)/admins/page.js"
-    ],
-    "/[parish]/admin/(dashboard)/subscription/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/[parish]/admin/(dashboard)/subscription/page.js"
+      "static/chunks/app/[parish]/(dashboard)/results/page.js"
     ]
   }
 }

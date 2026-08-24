@@ -1,67 +1,3 @@
-// "use client";
-
-// import { useRef, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import { SubBanner, Lozenge } from "@/components/ui";
-// import { exerciseQ } from "@/lib/data";
-// import { useSubscription } from "@/lib/subscription";
-// import { Gate } from "./Gate";
-
-// export function Exercise({ parishName, parishSlug }: { parishName: string; parishSlug: string }) {
-//   const { active } = useSubscription();
-//   const router = useRouter();
-//   const [submitted, setSubmitted] = useState(false);
-//   const [saving, setSaving] = useState(false);
-//   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-//   if (!active) return <Gate parishName={parishName} />;
-
-//   function onType() {
-//     setSaving(true);
-//     if (timer.current) clearTimeout(timer.current);
-//     timer.current = setTimeout(() => setSaving(false), 900);
-//   }
-
-//   if (submitted) {
-//     return (
-//       <>
-//         <SubBanner active={active} />
-//         <div className="card result-card" style={{ maxWidth: 520, margin: "30px auto" }}>
-//           <div className="icon" style={{ width: 62, height: 62, borderRadius: "50%", background: "var(--amber-soft)", color: "var(--amber-ink)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-//             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M12 2v6M12 8l3 3M12 8l-3 3" /><circle cx="12" cy="16" r="6" /></svg>
-//           </div>
-//           <div className="verdict" style={{ color: "var(--amber-ink)" }}>Submitted for grading</div>
-//           <p className="muted" style={{ maxWidth: 380, margin: "0 auto" }}>Your reflection is now with the region admin. You&rsquo;ll see your grade here once it has been reviewed.</p>
-//           <Lozenge style={{ margin: "22px 0" }} />
-//           <button className="btn btn-ghost" onClick={() => router.push(`/${parishSlug}`)}>Back to my courses</button>
-//         </div>
-//       </>
-//     );
-//   }
-
-//   return (
-//     <>
-//       <SubBanner active={active} />
-//       <div className="page-head"><div className="eyebrow">Foundations of Catechesis &middot; Module 3 &middot; Topic 2</div><h1>Reflection on the Beatitudes</h1><p>Answer each question in your own words. Your work saves automatically as you type.</p></div>
-//       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
-//         <span className="badge b-pending"><span className="dot" />Due 16 Jun 2026</span>
-//         <span className={`save-ind${saving ? " saving" : ""}`}><span className="dot" />{saving ? "Saving\u2026" : "All answers saved"}</span>
-//       </div>
-//       {exerciseQ.map((q, i) => (
-//         <div className="card question" key={i}>
-//           <div className="qn"><div className="qnum">{i + 1}</div><div><div className="qtext">{q}</div><div className="qmarks">Short answer</div></div></div>
-//           <div className="field" style={{ margin: 0 }}><textarea placeholder="Write your reflection\u2026" onInput={onType} /></div>
-//         </div>
-//       ))}
-//       <div style={{ display: "flex", gap: 12, justifyContent: "flex-end", marginTop: 6 }}>
-//         <button className="btn btn-ghost" onClick={() => router.push(`/${parishSlug}`)}>Save &amp; exit</button>
-//         <button className="btn btn-primary" onClick={() => setSubmitted(true)}>Submit for grading</button>
-//       </div>
-//     </>
-//   );
-// }
-
-
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -69,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { SubBanner, Lozenge } from "@/components/ui";
 import { useSubscription } from "@/lib/subscription";
 import { Gate } from "./Gate";
+import { isNoActiveTermError } from "@/lib/api-errors";
+import { NoActiveTermBanner } from "@/components/ui/NoActiveTermBanner";
+import Link from "next/link";
 
 interface ExerciseQuestion {
   id: number;
@@ -108,10 +47,12 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
   const [submission, setSubmission] = useState<Submission | null>(null);
   const [exerciseData, setExerciseData] = useState<ExerciseData | null>(null);
   const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [noActiveTerm, setNoActiveTerm] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [termEndedWhileEditing, setTermEndedWhileEditing] = useState(false);
 
   const [pendingSaves, setPendingSaves] = useState(0);
   const saveTimers = useRef<Record<number, ReturnType<typeof setTimeout>>>({});
@@ -133,12 +74,17 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
 
       const startJson = await startRes.json();
       if (!startRes.ok) {
+        if (isNoActiveTermError(startJson.message)) {
+          setNoActiveTerm(true);
+          setIsLoading(false);
+          return;
+        }
         setLoadError(startJson.message ?? "Failed to start this exercise.");
         setIsLoading(false);
         return;
       }
 
-      setSubmission(startJson);
+    setSubmission(startJson);
       const initialAnswers: Record<number, string> = {};
       (startJson.answers ?? []).forEach((a: SubmissionAnswer) => {
         if (a.answer_text != null) initialAnswers[a.question_id] = a.answer_text;
@@ -167,11 +113,33 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
     if (active) init();
   }, [active, init]);
 
+  // async function saveAnswer(questionId: number, value: string) {
+  //   if (!submission) return;
+  //   setPendingSaves((n) => n + 1);
+  //   try {
+  //     await fetch(`/api/parishioner/exercise/${uuid}/save-answer?parish=${parishSlug}`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         submission_id: submission.id,
+  //         question_id: questionId,
+  //         answer_text: value,
+  //       }),
+  //     });
+  //   } catch {
+  //     const msg = isNoActiveTermError(json.message)
+  //       ? "This term has ended, so your answer can no longer be saved. Please contact your admin."
+  //       : json.message ?? "Something went wrong.";
+  //   } finally {
+  //     setPendingSaves((n) => Math.max(0, n - 1));
+  //   }
+  // }
+
   async function saveAnswer(questionId: number, value: string) {
     if (!submission) return;
     setPendingSaves((n) => n + 1);
     try {
-      await fetch(`/api/parishioner/exercise/${uuid}/save-answer?parish=${parishSlug}`, {
+      const res = await fetch(`/api/parishioner/exercise/${uuid}/save-answer?parish=${parishSlug}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -180,9 +148,21 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
           answer_text: value,
         }),
       });
+
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        const msg = isNoActiveTermError(json)
+          ? "This term has ended, so your answer can no longer be saved. Please contact your admin."
+          : json.message ?? "Failed to save your answer.";
+        if (isNoActiveTermError(json)) {
+          setTermEndedWhileEditing(true);
+        } else {
+          // stay silent for ordinary autosave failures, matching original behavior
+        }
+        setSubmitError(msg); // or whatever error state field this component actually uses for this kind of message
+      }
     } catch {
-      // Best-effort autosave - a failed save here is retried on the next
-      // keystroke's debounce, so we don't surface a disruptive error.
+      setSubmitError("Unable to reach the server.");
     } finally {
       setPendingSaves((n) => Math.max(0, n - 1));
     }
@@ -239,6 +219,15 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
       </>
     );
   }
+  if (noActiveTerm) {
+    return (
+      <div className="card panel">
+        <NoActiveTermBanner />
+        <Link className="btn btn-ghost btn-sm" href={`/${parishSlug}`}>&larr; My courses</Link>
+      </div>
+    );
+  }
+ 
 
   if (loadError || !exerciseData) {
     return (
