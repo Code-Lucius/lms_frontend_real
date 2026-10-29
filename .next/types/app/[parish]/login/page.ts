@@ -1,4 +1,4 @@
-// File: C:\Users\user\Desktop\archdiocese-lms-next\app\[parish]\login\page.tsx
+// File: C:\Users\USER\Desktop\personal_projects\archdiocese-lms-next\app\[parish]\login\page.tsx
 import * as entry from '../../../../../app/[parish]/login/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

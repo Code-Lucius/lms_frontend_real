@@ -42,6 +42,33 @@ export interface Parishioner {
   created_at: string;
 }
 
+export interface HierarchyDeanery {
+  uuid: string;
+  name: string;
+  parish_count: number;
+}
+
+export interface HierarchyRegion {
+  uuid: string;
+  name: string;
+  deaneries: HierarchyDeanery[];
+}
+
+export interface HierarchyParish {
+  uuid: string;
+  parish_name: string;
+  slug: string;
+  parishioners_count: number;
+}
+
+export interface DirectoryParishioner {
+  parish_code: string;
+  name: string;
+  email: string;
+  status: "active" | "pending";
+  courses_count: number;
+}
+
 export interface Course {
   uuid: string;
   name: string;
@@ -126,6 +153,12 @@ export interface RegionAdminRecord {
   region: { uuid: string; name: string } | null;
 }
 
+export interface RegionDirectoryOverview {
+  uuid: string;
+  name: string;
+  deaneries: HierarchyDeanery[];
+}
+
 export interface DeaneryAdminRecord {
   name: string;
   email: string;
@@ -133,9 +166,54 @@ export interface DeaneryAdminRecord {
   type: "administrative" | "academic";
 }
 
+export interface DeaneryHierarchyData {
+  uuid: string;
+  name: string;
+  region_name: string | null;
+  parishes: HierarchyParish[];
+}
+
 export interface Paginated<T> {
   current_page: number;
   last_page: number;
   total: number;
   data: T[];
+}
+
+export interface ModuleResult {
+  module_uuid: string;
+  module_name: string;
+  course_name: string | null;
+  term_name: string | null;
+  term_status: "active" | "ended" | null;
+  final_percentage: number;
+  pass_mark: number;
+  passed: boolean;
+}
+
+export interface ExamResult {
+  module_uuid: string;
+  module_name: string;
+  course_uuid: string;
+  course_name: string;
+  term_name: string | null;
+  exam_title: string;
+  score: number;
+  total_marks: number;
+  percentage: number;
+  passed: boolean;
+  submitted_at: string;
+}
+
+export interface ExerciseResult {
+  exercise_uuid: string;
+  title: string;
+  due_date: string | null;
+  module_name: string;
+  course_uuid: string;
+  course_name: string;
+  status: "graded" | "pending";
+  score: number | null;
+  total_marks: number | null;
+  attempt_number: number;
 }

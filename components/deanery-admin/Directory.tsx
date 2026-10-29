@@ -1,42 +1,96 @@
-"use client";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { load, plural, withQuery } from "@/lib/directory";
+import { ParishionersPanel, Tile } from "@/components/directory/DirectoryParts";
+import type { DeaneryHierarchyData, DirectoryParishioner, Paginated } from "@/lib/types";
 
-import { useState } from "react";
-import { Badge, Person } from "@/components/ui";
-import { hierarchy, parishioners, childCount, type Node } from "@/lib/data";
+const BASE = "/deanery-admin/directory";
 
-export function Directory() {
-  const [path, setPath] = useState<number[]>([]);
-  let cursor: Node[] = hierarchy;
-  const labels: string[] = [];
-  for (const idx of path) { labels.push(cursor[idx].label); cursor = cursor[idx].children ?? []; }
-  const atParish = path.length === 3;
-  const crumbs = (
+export async function DeaneryDirectory({
+  path = [],
+  page = 1,
+  search = "",
+}: {
+  path?: string[];
+  page?: number;
+  search?: string;
+}) {
+  if (path.length > 1) notFound();
+  const [parishUuid] = path;
+
+  const header = (deaneryName?: string) => (
+    <div className="page-head">
+      <h1>Student directory</h1>
+      <p>
+        Browse parishioners{deaneryName ? ` in ${deaneryName}` : ""} by parish. Open a parish to see its members.
+      </p>
+    </div>
+  );
+  const errorBox = (message: string) => (
+    <>
+      {header()}
+      <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5 }}>{message}</div>
+    </>
+  );
+
+  // Your own deanery plus its parishes with parishioner counts (2 small queries).
+  const overview = await load<DeaneryHierarchyData>("/deanery-admin/hierarchy");
+  if (!overview.ok) return errorBox(overview.message);
+  if (!overview.data) return errorBox("Your deanery could not be loaded.");
+  const deanery = overview.data;
+
+  const parish = parishUuid ? deanery.parishes.find((p) => p.uuid === parishUuid) : undefined;
+  if (parishUuid && !parish) notFound();
+
+  const crumbs: { label: string; href: string }[] = [{ label: deanery.name, href: BASE }];
+  if (parish) crumbs.push({ label: parish.parish_name, href: `${BASE}/${parish.uuid}` });
+
+  const breadcrumbs = (
     <div className="dir-crumbs">
-      <button onClick={() => setPath([])}>Archdiocese</button>
-      {labels.map((l, i) => (<span key={i}><span className="sep"> &rsaquo; </span><button onClick={() => setPath(path.slice(0, i + 1))}>{l}</button></span>))}
+      {crumbs.map((c, i) => (
+        <span key={c.href}>
+          {i > 0 && <span className="sep"> &rsaquo; </span>}
+          <Link href={c.href}>{c.label}</Link>
+        </span>
+      ))}
     </div>
   );
 
+  // Level 2: the parishioner table.
+  if (parish) {
+    const parishHref = `${BASE}/${parish.uuid}`;
+    const result = await load<Paginated<DirectoryParishioner>>(
+      `/deanery-admin/directory/parishes/${parish.uuid}/parishioners${withQuery("", { page, search })}`
+    );
+
+    return (
+      <>
+        {header(deanery.name)}
+        {breadcrumbs}
+        <ParishionersPanel parishName={parish.parish_name} parishHref={parishHref} search={search} result={result} />
+      </>
+    );
+  }
+
+  // Level 1: parish tiles.
   return (
     <>
-      <div className="page-head"><h1>Student directory</h1><p>Browse parishioners grouped by Region &rarr; Deanery &rarr; Parish. Drill down to a parish to see its members.</p></div>
-      {crumbs}
-      {atParish ? (
-        <div className="card panel"><h2 style={{ fontSize: 17 }}>Parishioners</h2><div className="sub">{labels[labels.length - 1]}</div>
-          <table className="tbl"><thead><tr><th>Parishioner</th><th>Enrolment</th><th>Status</th></tr></thead>
-            <tbody>{parishioners.map((p, i) => (<tr key={i}><td><Person name={p.n} email={p.e} /></td><td className="muted">{p.en}</td><td><Badge state={p.st} /></td></tr>))}</tbody>
-          </table>
-        </div>
-      ) : (
+      {header(deanery.name)}
+      {breadcrumbs}
+      {deanery.parishes.length ? (
         <div className="dir-grid">
-          {cursor.map((n, i) => (
-            <button className="dir-tile" key={i} onClick={() => setPath([...path, i])}>
-              <span className="k">{n.kind}</span><span className="l">{n.label}</span>
-              <span className="m">{n.kind === "Parish" ? n.count : childCount(n)}</span>
-              {n.kind === "Parish" ? <Badge state={n.sub!} /> : null}
-            </button>
+          {deanery.parishes.map((p) => (
+            <Tile
+              key={p.uuid}
+              href={`${BASE}/${p.uuid}`}
+              kind="Parish"
+              label={p.parish_name}
+              meta={plural(p.parishioners_count, "parishioner", "parishioners")}
+            />
           ))}
         </div>
+      ) : (
+        <div className="empty">No parishes in this deanery yet.</div>
       )}
     </>
   );

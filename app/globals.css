@@ -304,6 +304,8 @@ table.tbl tr.click:hover td{background:var(--limestone)}
 .dir-tile .l{font-family:'Fraunces';font-size:16px}
 .dir-tile .m{font-size:12px;color:var(--muted)}
 
+.dir-crumbs a{color:var(--plum);font-weight:600;font-size:12.5px;text-decoration:none}
+
 /* small utilities to keep components tidy */
 .muted{color:var(--muted)}
 .faint{color:var(--faint)}
