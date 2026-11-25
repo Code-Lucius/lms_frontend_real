@@ -109,7 +109,7 @@
 
 //       <div className="enrol-grid">
 //         {isLoading ? (
-//           <p className="muted">Loading\u2026</p>
+//           <p className="muted">Loading...</p>
 //         ) : availableCourses.length ? (
 //           availableCourses.map((c) => (
 //             <div className="card enrol" key={c.uuid}>
@@ -130,7 +130,7 @@
 //                   onClick={() => handleEnrol(c)}
 //                   disabled={enrollingUuid === c.uuid}
 //                 >
-//                   {enrollingUuid === c.uuid ? "Enrolling\u2026" : "Enrol"}
+//                   {enrollingUuid === c.uuid ? "Enrolling..." : "Enrol"}
 //                 </button>
 //               )}
 //             </div>
@@ -251,7 +251,7 @@ export function Dash({ parishName, parishSlug }: { parishName: string; parishSlu
 
       <div className="enrol-grid">
         {isLoading ? (
-          <p className="muted">Loading\u2026</p>
+          <p className="muted">Loading...</p>
         ) : availableCourses.length ? (
           availableCourses.map((c) => (
             <div className="card enrol" key={c.uuid}>
@@ -273,7 +273,7 @@ export function Dash({ parishName, parishSlug }: { parishName: string; parishSlu
                   disabled={enrollingUuid === c.uuid || !termActive}
                   title={!termActive ? "Enrolment is closed until a new term begins" : undefined}
                 >
-                  {enrollingUuid === c.uuid ? "Enrolling\u2026" : "Enrol"}
+                  {enrollingUuid === c.uuid ? "Enrolling..." : "Enrol"}
                 </button>
               )}
             </div>

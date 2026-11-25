@@ -58,13 +58,13 @@ export const NAV: NavSection[] = [
       },
     ],
   },
-  {
-    label: "Content",
-    items: [
-      { href: "/archdiocese/content", label: "Content studio", icon: <IconFolder /> },
-      { href: "/archdiocese/exams", label: "Exam scheduler", icon: <IconCalendar /> },
-    ],
-  },
+  // {
+  //   label: "Content",
+  //   items: [
+  //     { href: "/archdiocese/content", label: "Content studio", icon: <IconFolder /> },
+  //     { href: "/archdiocese/exams", label: "Exam scheduler", icon: <IconCalendar /> },
+  //   ],
+  // },
   {
     label: "People",
     items: [{ href: "/archdiocese/admins", label: "Admins", icon: <IconUserPlus /> }],

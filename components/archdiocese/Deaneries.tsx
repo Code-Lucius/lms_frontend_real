@@ -16,6 +16,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
 
   const [editing, setEditing] = useState<Deanery | null>(null);
   const [name, setName] = useState("");
+  const [code, setCode] = useState("");
   const [formRegionUuid, setFormRegionUuid] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
@@ -63,6 +64,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
   function startCreate() {
     setEditing(null);
     setName("");
+    setCode("");
     setFormRegionUuid(selectedRegion);
     setFormError(null);
     setFieldErrors({});
@@ -71,6 +73,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
   function startEdit(d: Deanery) {
     setEditing(d);
     setName(d.name);
+    setName(d.code);
     setFormRegionUuid(selectedRegion); // best guess - list doesn't return the deanery's region_uuid directly, and it's the region currently being browsed
     setFormError(null);
     setFieldErrors({});
@@ -83,7 +86,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
     setIsSaving(true);
 
     try {
-      const body = { name, region_uuid: formRegionUuid };
+      const body = { name, code, region_uuid: formRegionUuid };
       const res = editing
         ? await fetch(`/api/deaneries/${editing.uuid}`, {
             method: "PUT",
@@ -147,7 +150,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0 }}>
           <label>Region</label>
           <select value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)} disabled={regionsLoading}>
-            <option value="" disabled>{regionsLoading ? "Loading regions\u2026" : "Select a region"}</option>
+            <option value="" disabled>{regionsLoading ? "Loading regions..." : "Select a region"}</option>
             {regions.map((r) => <option key={r.uuid} value={r.uuid}>{r.name}</option>)}
           </select>
           {regionsError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{regionsError}</div>}
@@ -160,7 +163,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
       <div className="grid-2">
         <div className="card panel">
           <h2 style={{ fontSize: 17 }}>Deaneries in this region</h2>
-          <div className="sub">{isLoading ? "Loading\u2026" : `${deaneries.length} on this page`}</div>
+          <div className="sub">{isLoading ? "Loading..." : `${deaneries.length} on this page`}</div>
 
           {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{listError}</div>}
 
@@ -174,7 +177,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
                     <td className="right">
                       <button className="btn btn-ghost btn-sm" onClick={() => startEdit(d)}>Edit</button>{" "}
                       <button className="btn btn-ghost btn-sm" disabled={deletingUuid === d.uuid} onClick={() => handleDelete(d)}>
-                        {deletingUuid === d.uuid ? "Removing\u2026" : "Remove"}
+                        {deletingUuid === d.uuid ? "Removing..." : "Remove"}
                       </button>
                     </td>
                   )}
@@ -203,7 +206,11 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
                 <input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Ikeja Deanery" required disabled={isSaving} />
                 {fieldErrors.name && <div style={{ color: "#b91c1c", fontSize: 12 }}>{fieldErrors.name[0]}</div>}
               </div>
-
+              <div className="field">
+                <label>Deanery code</label>
+                <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="e.g. Ikj" required disabled={isSaving} />
+                {fieldErrors.code && <div style={{ color: "#b91c1c", fontSize: 12 }}>{fieldErrors.code[0]}</div>}
+              </div>
               <div className="field">
                 <label>Region</label>
                 <select value={formRegionUuid} onChange={(e) => setFormRegionUuid(e.target.value)} required disabled={isSaving || regionsLoading}>
@@ -217,7 +224,7 @@ export function Deaneries({ canManage }: { canManage: boolean }) {
 
               <div style={{ display: "flex", gap: 10 }}>
                 <button type="submit" className="btn btn-primary btn-sm" disabled={isSaving || regions.length === 0}>
-                  {isSaving ? "Saving\u2026" : editing ? "Save changes" : "Create deanery"}
+                  {isSaving ? "Saving..." : editing ? "Save changes" : "Create deanery"}
                 </button>
                 {editing && <button type="button" className="btn btn-ghost btn-sm" onClick={startCreate} disabled={isSaving}>Cancel</button>}
               </div>

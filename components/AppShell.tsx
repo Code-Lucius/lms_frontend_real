@@ -106,7 +106,7 @@ export function AppShell({
             disabled={isPending}
             onClick={() => startTransition(() => logout())}
           >
-            {isPending ? "Signing out\u2026" : "Sign out"}
+            {isPending ? "Signing out..." : "Sign out"}
           </button>
         </div>
         <div className="content">{children}</div>

@@ -200,7 +200,7 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
   if (!active) return <Gate parishName={parishName} />;
 
   if (isLoading) {
-    return <p className="muted">Loading\u2026</p>;
+    return <p className="muted">Loading...</p>;
   }
 
   if (submitted || alreadySubmitted) {
@@ -256,7 +256,7 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
         {dueLabel && <span className="badge b-pending"><span className="dot" />Due {dueLabel}</span>}
         <span className={`save-ind${pendingSaves > 0 ? " saving" : ""}`}>
-          <span className="dot" />{pendingSaves > 0 ? "Saving\u2026" : "All answers saved"}
+          <span className="dot" />{pendingSaves > 0 ? "Saving..." : "All answers saved"}
         </span>
       </div>
 
@@ -271,7 +271,7 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
           </div>
           <div className="field" style={{ margin: 0 }}>
             <textarea
-              placeholder="Write your reflection\u2026"
+              placeholder="Write your reflection..."
               value={answers[q.id] ?? ""}
               onChange={(e) => handleAnswerChange(q.id, e.target.value)}
             />
@@ -284,7 +284,7 @@ export function Exercise({ uuid, parishName, parishSlug }: { uuid: string; paris
       <div style={{ display: "flex", gap: 12, justifyContent: "flex-end", marginTop: 6 }}>
         <button className="btn btn-ghost" onClick={() => router.push(`/${parishSlug}`)} disabled={submitting}>Save &amp; exit</button>
         <button className="btn btn-primary" onClick={handleSubmit} disabled={submitting}>
-          {submitting ? "Submitting\u2026" : "Submit for grading"}
+          {submitting ? "Submitting..." : "Submit for grading"}
         </button>
       </div>
     </>

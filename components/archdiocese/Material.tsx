@@ -236,7 +236,7 @@ export function Materials({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Course</label>
           <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)} disabled={coursesLoading}>
-            <option value="" disabled>{coursesLoading ? "Loading\u2026" : "Select a course"}</option>
+            <option value="" disabled>{coursesLoading ? "Loading..." : "Select a course"}</option>
             {courses.map((c) => <option key={c.uuid} value={c.uuid}>{c.name}</option>)}
           </select>
           {coursesError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{coursesError}</div>}
@@ -245,7 +245,7 @@ export function Materials({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Module</label>
           <select value={selectedModule} onChange={(e) => setSelectedModule(e.target.value)} disabled={modulesLoading || moduleOptions.length === 0}>
-            <option value="" disabled>{modulesLoading ? "Loading\u2026" : moduleOptions.length === 0 ? "No modules" : "Select a module"}</option>
+            <option value="" disabled>{modulesLoading ? "Loading..." : moduleOptions.length === 0 ? "No modules" : "Select a module"}</option>
             {moduleOptions.map((m) => <option key={m.uuid} value={m.uuid}>{m.name}</option>)}
           </select>
           {modulesError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{modulesError}</div>}
@@ -254,7 +254,7 @@ export function Materials({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Topic</label>
           <select value={selectedTopic} onChange={(e) => setSelectedTopic(e.target.value)} disabled={topicsLoading || topicOptions.length === 0}>
-            <option value="" disabled>{topicsLoading ? "Loading\u2026" : topicOptions.length === 0 ? "No topics" : "Select a topic"}</option>
+            <option value="" disabled>{topicsLoading ? "Loading..." : topicOptions.length === 0 ? "No topics" : "Select a topic"}</option>
             {topicOptions.map((t) => <option key={t.uuid} value={t.uuid}>{t.name}</option>)}
           </select>
           {topicsError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{topicsError}</div>}
@@ -264,7 +264,7 @@ export function Materials({ canManage }: { canManage: boolean }) {
       <div className="grid-2">
         <div className="card panel">
           <h2 style={{ fontSize: 17 }}>Materials in this topic</h2>
-          <div className="sub">{isLoading ? "Loading\u2026" : `${materials.length} on this page`}</div>
+          <div className="sub">{isLoading ? "Loading..." : `${materials.length} on this page`}</div>
 
           {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{listError}</div>}
 
@@ -279,7 +279,7 @@ export function Materials({ canManage }: { canManage: boolean }) {
                     <td className="right">
                       <button className="btn btn-ghost btn-sm" onClick={() => startEdit(m)}>Edit</button>{" "}
                       <button className="btn btn-ghost btn-sm" disabled={deletingUuid === m.uuid} onClick={() => handleDelete(m)}>
-                        {deletingUuid === m.uuid ? "Removing\u2026" : "Remove"}
+                        {deletingUuid === m.uuid ? "Removing..." : "Remove"}
                       </button>
                     </td>
                   )}
@@ -336,7 +336,7 @@ export function Materials({ canManage }: { canManage: boolean }) {
 
               <div style={{ display: "flex", gap: 10 }}>
                 <button type="submit" className="btn btn-primary btn-sm" disabled={isSaving || topicOptions.length === 0}>
-                  {isSaving ? "Uploading\u2026" : editing ? "Save changes" : "Upload material"}
+                  {isSaving ? "Uploading..." : editing ? "Save changes" : "Upload material"}
                 </button>
                 {editing && <button type="button" className="btn btn-ghost btn-sm" onClick={startCreate} disabled={isSaving}>Cancel</button>}
               </div>

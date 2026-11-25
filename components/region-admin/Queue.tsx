@@ -160,7 +160,7 @@ useEffect(() => {
           <thead><tr><th>Exercise</th><th>Parishioner</th><th>Parish</th><th>Submitted</th><th>Status</th></tr></thead>
           <tbody>
             {isLoading ? (
-              <tr><td colSpan={5} className="empty">Loading\u2026</td></tr>
+              <tr><td colSpan={5} className="empty">Loading...</td></tr>
             ) : submissions.length ? (
               submissions.map((s) => (
                 <tr

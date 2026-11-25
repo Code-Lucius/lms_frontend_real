@@ -97,7 +97,7 @@ export function TermPanel({ canManage }: { canManage: boolean }) {
 
       <div className="card panel" style={{ maxWidth: 560 }}>
         {isLoading ? (
-          <div className="empty">Loading\u2026</div>
+          <div className="empty">Loading...</div>
         ) : loadError ? (
           <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5 }}>{loadError}</div>
         ) : term ? (
@@ -115,7 +115,7 @@ export function TermPanel({ canManage }: { canManage: boolean }) {
             </div>
             {canManage && isActive && (
               <button className="btn btn-ghost btn-sm" disabled={isEnding} onClick={handleEnd}>
-                {isEnding ? "Ending\u2026" : "End term"}
+                {isEnding ? "Ending..." : "End term"}
               </button>
             )}
           </>
@@ -132,7 +132,7 @@ export function TermPanel({ canManage }: { canManage: boolean }) {
             </div>
             {actionError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, marginBottom: 10 }}>{actionError}</div>}
             <button type="submit" className="btn btn-primary btn-sm" disabled={isStarting}>
-              {isStarting ? "Starting\u2026" : "Start term"}
+              {isStarting ? "Starting..." : "Start term"}
             </button>
           </form>
         )}

@@ -183,7 +183,7 @@ export function People({ parishName, parishSlug }: { parishName: string; parishS
           <thead><tr><th>Parishioner</th><th>Phone</th><th>Enrolment</th><th>Status</th></tr></thead>
           <tbody>
             {isLoading ? (
-              <tr><td colSpan={4} className="empty">Loading\u2026</td></tr>
+              <tr><td colSpan={4} className="empty">Loading...</td></tr>
             ) : list.length ? (
               list.map((p) => (
                 <tr key={p.uuid ?? p.email}>
@@ -265,7 +265,7 @@ export function People({ parishName, parishSlug }: { parishName: string; parishS
               <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
                 <button type="button" className="btn btn-ghost btn-sm" onClick={closeModal} disabled={isSaving}>Cancel</button>
                 <button type="submit" className="btn btn-primary btn-sm" disabled={isSaving}>
-                  {isSaving ? "Adding\u2026" : "Add & send invite"}
+                  {isSaving ? "Adding..." : "Add & send invite"}
                 </button>
               </div>
             </form>

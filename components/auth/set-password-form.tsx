@@ -113,7 +113,7 @@
 //             )}
 
 //             <button type="submit" className="btn btn-primary" style={{ width: "100%" }} disabled={isPending}>
-//               {isPending ? "Setting password\u2026" : "Set password & continue"}
+//               {isPending ? "Setting password..." : "Set password & continue"}
 //             </button>
 //           </form>
 
@@ -274,7 +274,7 @@ export function SetPasswordForm({
             )}
 
             <button type="submit" className="btn btn-primary" style={{ width: "100%" }} disabled={isPending}>
-              {isPending ? "Setting password\u2026" : "Set password & continue"}
+              {isPending ? "Setting password..." : "Set password & continue"}
             </button>
           </form>
 

@@ -1,11 +1,13 @@
 {
+  "/api/parishioner/my-courses/route": "app/api/parishioner/my-courses/route.js",
   "/[parish]/login/page": "app/[parish]/login/page.js",
-  "/region-admin/login/page": "app/region-admin/login/page.js",
-  "/deanery-admin/login/page": "app/deanery-admin/login/page.js",
-  "/[parish]/(dashboard)/page": "app/[parish]/(dashboard)/page.js",
+  "/api/my-results/route": "app/api/my-results/route.js",
+  "/api/parishioner/exam/[examUuid]/submit/route": "app/api/parishioner/exam/[examUuid]/submit/route.js",
+  "/api/my-exam-results/route": "app/api/my-exam-results/route.js",
+  "/api/my-exercise-results/route": "app/api/my-exercise-results/route.js",
   "/[parish]/(dashboard)/results/page": "app/[parish]/(dashboard)/results/page.js",
-  "/[parish]/(dashboard)/exercise/[uuid]/page": "app/[parish]/(dashboard)/exercise/[uuid]/page.js",
   "/[parish]/(dashboard)/module/[uuid]/page": "app/[parish]/(dashboard)/module/[uuid]/page.js",
-  "/deanery-admin/(dashboard)/page": "app/deanery-admin/(dashboard)/page.js",
-  "/deanery-admin/(dashboard)/results/page": "app/deanery-admin/(dashboard)/results/page.js"
+  "/[parish]/(dashboard)/exam/run/page": "app/[parish]/(dashboard)/exam/run/page.js",
+  "/[parish]/(dashboard)/exam/page": "app/[parish]/(dashboard)/exam/page.js",
+  "/[parish]/(dashboard)/page": "app/[parish]/(dashboard)/page.js"
 }

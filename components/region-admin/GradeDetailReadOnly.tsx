@@ -62,7 +62,7 @@ export function GradeDetailReadOnly({ submissionId }: { submissionId: string }) 
     load();
   }, [load]);
 
-  if (isLoading) return <p className="muted">Loading\u2026</p>;
+  if (isLoading) return <p className="muted">Loading...</p>;
 
   if (loadError || !submission) {
     return (

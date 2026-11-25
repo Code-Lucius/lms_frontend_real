@@ -146,7 +146,7 @@ export function RegionAdmins({ canManage }: { canManage: boolean }) {
       <div className="grid-2">
         <div className="card panel">
           <h2 style={{ fontSize: 17 }}>All region admins</h2>
-          <div className="sub">{isLoading ? "Loading\u2026" : `${admins.length} on this page`}</div>
+          <div className="sub">{isLoading ? "Loading..." : `${admins.length} on this page`}</div>
 
           {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{listError}</div>}
 
@@ -161,7 +161,7 @@ export function RegionAdmins({ canManage }: { canManage: boolean }) {
                     <td className="right">
                       <button className="btn btn-ghost btn-sm" onClick={() => startEdit(a)}>Edit</button>{" "}
                       <button className="btn btn-ghost btn-sm" disabled={deletingUuid === a.uuid} onClick={() => handleDelete(a)}>
-                        {deletingUuid === a.uuid ? "Removing\u2026" : "Remove"}
+                        {deletingUuid === a.uuid ? "Removing..." : "Remove"}
                       </button>
                     </td>
                   )}
@@ -211,7 +211,7 @@ export function RegionAdmins({ canManage }: { canManage: boolean }) {
                 <div className="field">
                   <label>Region</label>
                   <select value={regionUuid} onChange={(e) => setRegionUuid(e.target.value)} required disabled={isSaving || regionsLoading}>
-                    <option value="" disabled>{regionsLoading ? "Loading regions\u2026" : "Select a region"}</option>
+                    <option value="" disabled>{regionsLoading ? "Loading regions..." : "Select a region"}</option>
                     {regions.map((r) => <option key={r.uuid} value={r.uuid}>{r.name}</option>)}
                   </select>
                   {regionsError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{regionsError}</div>}
@@ -228,7 +228,7 @@ export function RegionAdmins({ canManage }: { canManage: boolean }) {
 
               <div style={{ display: "flex", gap: 10 }}>
                 <button type="submit" className="btn btn-primary btn-sm" disabled={isSaving || (!editing && regions.length === 0)}>
-                  {isSaving ? "Saving\u2026" : editing ? "Save changes" : "Create & send invite"}
+                  {isSaving ? "Saving..." : editing ? "Save changes" : "Create & send invite"}
                 </button>
                 {editing && <button type="button" className="btn btn-ghost btn-sm" onClick={startCreate} disabled={isSaving}>Cancel</button>}
               </div>

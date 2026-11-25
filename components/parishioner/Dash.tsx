@@ -66,7 +66,7 @@
 //       {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, marginBottom: 12 }}>{listError}</div>}
 
 //       {isLoading ? (
-//         <p className="muted">Loading\u2026</p>
+//         <p className="muted">Loading...</p>
 //       ) : courses.length ? (
 //         <div className="courses-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
 //           {courses.map((co) => (
@@ -189,7 +189,7 @@ export function Dash({ parishName, parishSlug }: { parishName: string; parishSlu
       {noActiveTerm && <NoActiveTermBanner />}
 
       {isLoading ? (
-        <p className="muted">Loading\u2026</p>
+        <p className="muted">Loading...</p>
       ) : noActiveTerm ? null : courses.length ? (
         <div className="courses-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
           {courses.map((co) => (

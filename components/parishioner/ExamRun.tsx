@@ -193,7 +193,7 @@ export function ExamRun({ examUuid, parishName, parishSlug }: { examUuid: string
   }
 
   if (!active) return <Gate parishName={parishName} />;
-  if (isLoading) return <p className="muted">Loading\u2026</p>;
+  if (isLoading) return <p className="muted">Loading...</p>;
   if (noActiveTerm) return <div className="card panel"><NoActiveTermBanner /></div>;
 
   if (loadError || !exam) {
@@ -360,7 +360,7 @@ export function ExamRun({ examUuid, parishName, parishSlug }: { examUuid: string
 
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 6 }}>
           <button className="btn btn-primary" onClick={handleSubmit} disabled={submitting}>
-            {submitting ? "Submitting\u2026" : "Submit exam"}
+            {submitting ? "Submitting..." : "Submit exam"}
           </button>
         </div>
       </div>

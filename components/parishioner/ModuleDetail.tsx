@@ -73,7 +73,7 @@ export function ModuleDetail({ uuid, parishName, parishSlug }: { uuid: string; p
   if (!active) return <Gate parishName={parishName} />;
 
   if (isLoading) {
-    return <p className="muted">Loading\u2026</p>;
+    return <p className="muted">Loading...</p>;
   }
 
   if (loadError || !module) {

@@ -344,7 +344,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Course</label>
           <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)} disabled={coursesLoading}>
-            <option value="" disabled>{coursesLoading ? "Loading\u2026" : "Select a course"}</option>
+            <option value="" disabled>{coursesLoading ? "Loading..." : "Select a course"}</option>
             {courses.map((c) => <option key={c.uuid} value={c.uuid}>{c.name}</option>)}
           </select>
           {coursesError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{coursesError}</div>}
@@ -352,7 +352,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Module</label>
           <select value={selectedModule} onChange={(e) => setSelectedModule(e.target.value)} disabled={modulesLoading || moduleOptions.length === 0}>
-            <option value="" disabled>{modulesLoading ? "Loading\u2026" : moduleOptions.length === 0 ? "No modules" : "Select a module"}</option>
+            <option value="" disabled>{modulesLoading ? "Loading..." : moduleOptions.length === 0 ? "No modules" : "Select a module"}</option>
             {moduleOptions.map((m) => <option key={m.uuid} value={m.uuid}>{m.name}</option>)}
           </select>
           {modulesError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{modulesError}</div>}
@@ -360,7 +360,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
       </div>
 
       {examLoading ? (
-        <p className="muted">Loading\u2026</p>
+        <p className="muted">Loading...</p>
       ) : !selectedModule ? (
         <p className="muted">Select a course and module above.</p>
       ) : examError ? (
@@ -411,7 +411,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
             {examFormError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, marginBottom: 10 }}>{examFormError}</div>}
             <div style={{ display: "flex", gap: 10 }}>
               <button type="submit" className="btn btn-primary btn-sm" disabled={savingExam}>
-                {savingExam ? "Saving\u2026" : exam ? "Save changes" : "Create exam"}
+                {savingExam ? "Saving..." : exam ? "Save changes" : "Create exam"}
               </button>
               <button type="button" className="btn btn-ghost btn-sm" onClick={() => setEditingExam(false)} disabled={savingExam}>Cancel</button>
             </div>
@@ -437,7 +437,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
             <div className="grid-2">
               <div className="card panel">
                 <h2 style={{ fontSize: 17 }}>Questions</h2>
-                <div className="sub">{questionsLoading ? "Loading\u2026" : `${questions.length} question${questions.length === 1 ? "" : "s"}`}</div>
+                <div className="sub">{questionsLoading ? "Loading..." : `${questions.length} question${questions.length === 1 ? "" : "s"}`}</div>
                 {questionsError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{questionsError}</div>}
                 <table className="tbl">
                   <thead><tr><th>Question</th><th>Marks</th>{canManage && <th></th>}</tr></thead>
@@ -450,7 +450,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
                           <td className="right">
                             <button className="btn btn-ghost btn-sm" onClick={() => startQuestionEdit(q)}>Edit</button>{" "}
                             <button className="btn btn-ghost btn-sm" disabled={deletingUuid === q.uuid} onClick={() => handleQuestionDelete(q)}>
-                              {deletingUuid === q.uuid ? "Removing\u2026" : "Remove"}
+                              {deletingUuid === q.uuid ? "Removing..." : "Remove"}
                             </button>
                           </td>
                         )}
@@ -509,7 +509,7 @@ export function Exam({ canManage }: { canManage: boolean }) {
 
                     <div style={{ display: "flex", gap: 10 }}>
                       <button type="submit" className="btn btn-primary btn-sm" disabled={savingQuestion}>
-                        {savingQuestion ? "Saving\u2026" : editingQuestion ? "Save changes" : "Add question"}
+                        {savingQuestion ? "Saving..." : editingQuestion ? "Save changes" : "Add question"}
                       </button>
                       {editingQuestion && (
                         <button type="button" className="btn btn-ghost btn-sm" onClick={startQuestionCreate} disabled={savingQuestion}>Cancel</button>

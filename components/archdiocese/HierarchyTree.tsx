@@ -26,6 +26,37 @@ function ParishRow({ parish }: { parish: HierarchyParish }) {
   );
 }
 
+function RegionNode({ region, parishesBasePath }: { region: HierarchyRegion; parishesBasePath: string }) {
+  const [open, setOpen] = useState(true);
+  const hasKids = region.deaneries.length > 0;
+
+  return (
+    <div className="tree-node">
+      <div className={`tree-row${open ? " open" : ""}`} onClick={hasKids ? () => setOpen((o) => !o) : undefined} style={hasKids ? undefined : { cursor: "default" }}>
+        {hasKids ? <IconChevron className="chev" width={16} height={16} /> : <span style={{ width: 16 }} />}
+        <span className="kind">Region</span><span className="label">{region.name}</span>
+        <span className="spacer" />
+        <span className="count">{plural(region.deaneries.length, "deanery", "deaneries")}</span>
+      </div>
+      {hasKids && open && (
+        <div className="tree-children">
+          {region.deaneries.map((d) => <DeaneryNode key={d.uuid} deanery={d} parishesBasePath={parishesBasePath} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function HierarchyTree({
+  regions,
+  parishesBasePath = DEFAULT_PARISHES_BASE_PATH,
+}: {
+  regions: HierarchyRegion[];
+  parishesBasePath?: string;
+}) {
+  return <>{regions.map((r) => <RegionNode key={r.uuid} region={r} parishesBasePath={parishesBasePath} />)}</>;
+}
+
 export function DeaneryNode({
   deanery,
   parishesBasePath,
@@ -93,4 +124,6 @@ export function DeaneryNode({
       )}
     </div>
   );
+
+  
 }

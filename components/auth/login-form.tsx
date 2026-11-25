@@ -85,7 +85,7 @@ export function LoginForm({ title, subtitle, slugLabel, endpoint, role, parishSl
             </div>
 
             <button type="submit" className="btn btn-primary" style={{ width: "100%" }} disabled={isPending}>
-              {isPending ? "Signing in\u2026" : "Sign in"}
+              {isPending ? "Signing in..." : "Sign in"}
             </button>
           </form>
 

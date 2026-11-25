@@ -199,7 +199,7 @@ export function Topics({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Course</label>
           <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)} disabled={coursesLoading}>
-            <option value="" disabled>{coursesLoading ? "Loading courses\u2026" : "Select a course"}</option>
+            <option value="" disabled>{coursesLoading ? "Loading courses..." : "Select a course"}</option>
             {courses.map((c) => <option key={c.uuid} value={c.uuid}>{c.name}</option>)}
           </select>
           {coursesError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{coursesError}</div>}
@@ -213,7 +213,7 @@ export function Topics({ canManage }: { canManage: boolean }) {
             disabled={modulesLoading || moduleOptions.length === 0}
           >
             <option value="" disabled>
-              {modulesLoading ? "Loading modules\u2026" : moduleOptions.length === 0 ? "No modules in this course" : "Select a module"}
+              {modulesLoading ? "Loading modules..." : moduleOptions.length === 0 ? "No modules in this course" : "Select a module"}
             </option>
             {moduleOptions.map((m) => <option key={m.uuid} value={m.uuid}>{m.name}</option>)}
           </select>
@@ -224,7 +224,7 @@ export function Topics({ canManage }: { canManage: boolean }) {
       <div className="grid-2">
         <div className="card panel">
           <h2 style={{ fontSize: 17 }}>Topics in this module</h2>
-          <div className="sub">{isLoading ? "Loading\u2026" : `${topics.length} topic${topics.length === 1 ? "" : "s"}`}</div>
+          <div className="sub">{isLoading ? "Loading..." : `${topics.length} topic${topics.length === 1 ? "" : "s"}`}</div>
 
           {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{listError}</div>}
 
@@ -238,7 +238,7 @@ export function Topics({ canManage }: { canManage: boolean }) {
                     <td className="right">
                       <button className="btn btn-ghost btn-sm" onClick={() => startEdit(t)}>Edit</button>{" "}
                       <button className="btn btn-ghost btn-sm" disabled={deletingUuid === t.uuid} onClick={() => handleDelete(t)}>
-                        {deletingUuid === t.uuid ? "Removing\u2026" : "Remove"}
+                        {deletingUuid === t.uuid ? "Removing..." : "Remove"}
                       </button>
                     </td>
                   )}
@@ -275,7 +275,7 @@ export function Topics({ canManage }: { canManage: boolean }) {
 
               <div style={{ display: "flex", gap: 10 }}>
                 <button type="submit" className="btn btn-primary btn-sm" disabled={isSaving || moduleOptions.length === 0}>
-                  {isSaving ? "Saving\u2026" : editing ? "Save changes" : "Create topic"}
+                  {isSaving ? "Saving..." : editing ? "Save changes" : "Create topic"}
                 </button>
                 {editing && <button type="button" className="btn btn-ghost btn-sm" onClick={startCreate} disabled={isSaving}>Cancel</button>}
               </div>

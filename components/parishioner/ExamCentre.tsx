@@ -117,7 +117,7 @@ export function ExamCentre({ parishName, parishSlug }: { parishName: string; par
       <div className="page-head"><h1>Exam centre</h1><p>Each module exam opens only during its scheduled window. Outside it, the exam is sealed.</p></div>
 
       {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{listError}</div>}
-      {isLoading && <div className="empty">Loading\u2026</div>}
+      {isLoading && <div className="empty">Loading...</div>}
       {!isLoading && !exams.length && !listError && <div className="empty">No exams scheduled yet.</div>}
 
       {exams.map((exam) => {

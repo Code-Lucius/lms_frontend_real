@@ -1,15 +1,19 @@
 import { fetchWithAuth, NotAuthenticatedError } from "@/lib/api";
 
-export type Loaded<T> = { ok: true; data: T } | { ok: false; message: string };
+export type Loaded<T> = { ok: true; data: T } | { ok: false; message: string; status: number };
 
 export async function load<T>(path: string): Promise<Loaded<T>> {
   try {
     const res = await fetchWithAuth(path);
     const json = await res.json().catch(() => ({}));
-    if (!res.ok) return { ok: false, message: json.message ?? "Request failed." };
+    if (!res.ok) return { ok: false, message: json.message ?? "Request failed.", status: res.status };
     return { ok: true, data: json.data as T };
   } catch (e) {
-    return { ok: false, message: e instanceof NotAuthenticatedError ? "Not authenticated." : "Unable to reach the server." };
+    return {
+      ok: false,
+      message: e instanceof NotAuthenticatedError ? "Not authenticated." : "Unable to reach the server.",
+      status: 0,
+    };
   }
 }
 

@@ -132,7 +132,7 @@ export function GradeView({ submissionId }: { submissionId: string }) {
     }
   }
 
-  if (isLoading) return <p className="muted">Loading\u2026</p>;
+  if (isLoading) return <p className="muted">Loading...</p>;
 
   if (loadError || !submission) {
     return (
@@ -204,7 +204,7 @@ export function GradeView({ submissionId }: { submissionId: string }) {
               <div className="field" style={{ margin: 0, flex: 1, minWidth: 200 }}>
                 <label style={{ marginBottom: 5 }}>Comment (optional)</label>
                 <input
-                  placeholder="A note for the parishioner\u2026"
+                  placeholder="A note for the parishioner..."
                   value={feedbacks[a.id] ?? ""}
                   onChange={(e) => setFeedbacks((f) => ({ ...f, [a.id]: e.target.value }))}
                   disabled={savingId === a.id}
@@ -216,7 +216,7 @@ export function GradeView({ submissionId }: { submissionId: string }) {
                 disabled={savingId === a.id || scores[a.id] === undefined || scores[a.id] === ""}
                 style={{ alignSelf: "flex-end" }}
               >
-                {savingId === a.id ? "Saving\u2026" : isSaved ? "Update grade" : "Save grade"}
+                {savingId === a.id ? "Saving..." : isSaved ? "Update grade" : "Save grade"}
               </button>
             </div>
             {isSaved && <div style={{ color: "var(--sage)", fontSize: 12.5, marginTop: 8 }}>Saved &#10003;</div>}
@@ -235,7 +235,7 @@ export function GradeView({ submissionId }: { submissionId: string }) {
           onClick={closeSubmission}
           disabled={!allAnswersSaved || isClosing}
         >
-          {isClosing ? "Closing\u2026" : "Close submission & release grade"}
+          {isClosing ? "Closing..." : "Close submission & release grade"}
         </button>
       </div>
     </>

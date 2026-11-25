@@ -209,7 +209,7 @@ export function Parishes({ canManage }: { canManage: boolean }) {
         <div className="field" style={{ marginBottom: 0, flex: 1 }}>
           <label>Region</label>
           <select value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)} disabled={regionsLoading}>
-            <option value="" disabled>{regionsLoading ? "Loading regions\u2026" : "Select a region"}</option>
+            <option value="" disabled>{regionsLoading ? "Loading regions..." : "Select a region"}</option>
             {regions.map((r) => <option key={r.uuid} value={r.uuid}>{r.name}</option>)}
           </select>
           {regionsError && <div style={{ color: "#b91c1c", fontSize: 12 }}>{regionsError}</div>}
@@ -223,7 +223,7 @@ export function Parishes({ canManage }: { canManage: boolean }) {
             disabled={deaneriesLoading || deaneryOptions.length === 0}
           >
             <option value="" disabled>
-              {deaneriesLoading ? "Loading deaneries\u2026" : deaneryOptions.length === 0 ? "No deaneries in this region" : "Select a deanery"}
+              {deaneriesLoading ? "Loading deaneries..." : deaneryOptions.length === 0 ? "No deaneries in this region" : "Select a deanery"}
             </option>
             {deaneryOptions.map((d) => <option key={d.uuid} value={d.uuid}>{d.name}</option>)}
           </select>
@@ -234,7 +234,7 @@ export function Parishes({ canManage }: { canManage: boolean }) {
       <div className="grid-2">
         <div className="card panel">
           <h2 style={{ fontSize: 17 }}>Parishes in this deanery</h2>
-          <div className="sub">{isLoading ? "Loading\u2026" : `${parishes.length} parish${parishes.length === 1 ? "" : "es"}`}</div>
+          <div className="sub">{isLoading ? "Loading..." : `${parishes.length} parish${parishes.length === 1 ? "" : "es"}`}</div>
 
           {listError && <div role="alert" style={{ color: "#b91c1c", fontSize: 12.5, margin: "8px 0" }}>{listError}</div>}
 
@@ -249,7 +249,7 @@ export function Parishes({ canManage }: { canManage: boolean }) {
                     <td className="right">
                       <button className="btn btn-ghost btn-sm" onClick={() => startEdit(p)}>Edit</button>{" "}
                       <button className="btn btn-ghost btn-sm" disabled={deletingUuid === p.uuid} onClick={() => handleDelete(p)}>
-                        {deletingUuid === p.uuid ? "Removing\u2026" : "Remove"}
+                        {deletingUuid === p.uuid ? "Removing..." : "Remove"}
                       </button>
                     </td>
                   )}
@@ -307,7 +307,7 @@ export function Parishes({ canManage }: { canManage: boolean }) {
 
               <div style={{ display: "flex", gap: 10 }}>
                 <button type="submit" className="btn btn-primary btn-sm" disabled={isSaving || deaneryOptions.length === 0}>
-                  {isSaving ? "Saving\u2026" : editing ? "Save changes" : "Create parish & send invite"}
+                  {isSaving ? "Saving..." : editing ? "Save changes" : "Create parish & send invite"}
                 </button>
                 {editing && <button type="button" className="btn btn-ghost btn-sm" onClick={startCreate} disabled={isSaving}>Cancel</button>}
               </div>
